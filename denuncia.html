@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Denúncias - Protegendo a Vida nos Oceanos</title>
+    <style>
+        :root {
+            --dark-blue: #000F72;
+            --cyan-blue: #00d2ff;
+            --purple-main: #330099;
+            --light-purple: #6a11cb;
+            --bg-gray: #f4f7f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-gray);
+            color: #333;
+        }
+
+        /* --- CABEÇALHO E NAVBAR --- */
+        header {
+            background-color: var(--dark-blue);
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo { width: 50px; }
+
+        nav {
+            background-color: var(--cyan-blue);
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            gap: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: lowercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: white; }
+
+        /* --- CONTAINER PRINCIPAL --- */
+        .dashboard-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* --- CARD DE PERFIL (ESQUERDA) --- */
+        .profile-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-gray);
+            border: 4px solid var(--cyan-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark-blue);
+        }
+
+        .profile-card h3 {
+            margin: 10px 0 5px;
+            color: var(--purple-main);
+            font-size: 1.4rem;
+        }
+
+        .profile-card p {
+            margin: 0 0 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--purple-main), var(--light-purple));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .profile-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: #444;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .menu-btn.active, .menu-btn:hover {
+            background-color: rgba(0, 210, 255, 0.15);
+            color: var(--dark-blue);
+            font-weight: bold;
+        }
+
+        .menu-btn.logout {
+            color: #cc0000;
+            margin-top: 15px;
+        }
+        .menu-btn.logout:hover {
+            background-color: rgba(204, 0, 0, 0.1);
+        }
+
+        /* --- CONTEÚDO DO PAINEL (DIREITA) --- */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .welcome-box {
+            background: linear-gradient(135deg, var(--dark-blue), var(--purple-main));
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .welcome-box h1 { margin: 0 0 10px; font-size: 1.8rem; }
+        .welcome-box p { margin: 0; opacity: 0.9; font-size: 1rem; }
+
+        .data-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .data-card h3 {
+            margin: 0 0 20px;
+            color: var(--purple-main);
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--bg-gray);
+            padding-bottom: 10px;
+        }
+
+        /* Tabela de Denúncias */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--dark-blue);
+            font-weight: bold;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .status.resolvido { background: #e8f5e9; color: #2e7d32; }
+        .status.pendente { background: #fff3e0; color: #f57c00; }
+        .status.em-analise { background: #e3f2fd; color: #1976d2; }
+
+        .btn-nova-denuncia {
+            background: linear-gradient(135deg, var(--purple-main), var(--light-purple));
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-nova-denuncia:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .dashboard-container { grid-template-columns: 1fr; margin: 20px auto; }
+            nav { gap: 15px; padding: 10px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html">
+            <img src="logo.png" alt="Protegendo a vida nos Oceanos" class="logo">
+        </a>
+    </header>
+
+    <nav>
+        <a href="index.html">início</a>
+        <a href="denuncias.html">denúncias</a>
+        <a href="doacoes.html">doações</a>
+    </nav>
+
+    <div class="dashboard-container">
+        
+        <!-- Painel Lateral Esquerdo -->
+        <aside class="profile-card">
+            <div class="avatar-container">
+                <div class="avatar-circle">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+            </div>
+            <h3>Douglas Silva</h3>
+            <p>Membro desde Jan/2026</p>
+            <span class="badge">Protetor dos Mares</span>
+
+            <div class="profile-menu">
+                <button class="menu-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <a href="usuario.html" style="text-decoration:none; color:inherit;">Painel Geral</a>
+                </button>
+                <button class="menu-btn active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <a href="usuario.html" style="text-decoration:none; color:inherit;">Minhas Denúncias</a>
+                </button>
+                <button class="menu-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <a href="doacoes.html" style="text-decoration:none; color:inherit;">Doações e Apoio</a>
+                </button>
+                <button class="menu-btn logout">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    <a href="login.html" style="text-decoration:none; color:inherit;">Sair</a>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Painel Central Direito -->
+        <main class="main-content">
+            <div class="welcome-box">
+                <h1>Minhas Denúncias</h1>
+                <p>Acompanhe todas as suas denúncias e faça novas. Cada ação ajuda a preservar nossos oceanos.</p>
+            </div>
+
+            <div class="data-card">
+                <button class="btn-nova-denuncia">+ Nova Denúncia</button>
+                
+                <h3>Histórico de Denúncias</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Localização</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/05/2026</td>
+                            <td>Praia da Barra, RJ</td>
+                            <td>Lixo e entulho jogados na areia</td>
+                            <td><span class="status resolvido">Resolvido</span></td>
+                        </tr>
+                        <tr>
+                            <td>05/05/2026</td>
+                            <td>Praia de Copacabana, RJ</td>
+                            <td>Embarcação suspeita de pesca ilegal</td>
+                            <td><span class="status em-analise">Análise</span></td>
+                        </tr>
+                        <tr>
+                            <td>22/04/2026</td>
+                            <td>Ilha Grande, RJ</td>
+                            <td>Poluição por óleo próximo à costa</td>
+                            <td><span class="status pendente">Pendente</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Sobre a ONG</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Transparência</a>
+        </div>
+        <p>&copy; 2026 Projeto São Douglas - Juntos pela preservação marinha.</p>
+    </footer>
+
+</body>
+</html>

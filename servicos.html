@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Serviços - Protegendo a Vida nos Oceanos</title>
+    <style>
+        :root {
+            --dark-blue: #000F72;
+            --cyan-blue: #00d2ff;
+            --purple-main: #330099;
+            --light-purple: #6a11cb;
+            --bg-gray: #f4f7f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-gray);
+            color: #333;
+        }
+
+        /* --- CABEÇALHO E NAVBAR --- */
+        header {
+            background-color: var(--dark-blue);
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+        }
+
+        nav {
+            background-color: var(--cyan-blue);
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+            gap: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: lowercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: white; }
+
+        /* --- BANNER DE INTRODUÇÃO --- */
+        .services-hero {
+            background: linear-gradient(135deg, var(--dark-blue), var(--purple-main));
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .services-hero h1 {
+            margin: 0 0 15px 0;
+            font-size: 2.5rem;
+        }
+
+        .services-hero p {
+            margin: 0 auto;
+            max-width: 600px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* --- GRADE DE SERVIÇOS --- */
+        .services-grid {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 35px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--cyan-blue);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-card.purple-top {
+            border-top-color: var(--purple-main);
+        }
+
+        .service-icon {
+            margin-bottom: 20px;
+            color: var(--purple-main);
+        }
+
+        .service-card h3 {
+            margin: 0 0 15px 0;
+            color: var(--dark-blue);
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            margin: 0 0 25px 0;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .service-btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: var(--purple-main);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .service-card.purple-top .service-btn {
+            background-color: var(--cyan-blue);
+            color: var(--dark-blue);
+        }
+
+        .service-btn:hover {
+            background-color: var(--dark-blue);
+            color: white;
+        }
+
+        /* --- RODAPÉ --- */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-links { margin-bottom: 25px; }
+        .footer-links a { 
+            color: var(--cyan-blue); 
+            margin: 0 15px; 
+            text-decoration: none; 
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .services-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="/img/logo.png" alt="Protegendo a vida nos Oceanos" class="logo">
+        </a>
+    </header>
+    <nav>
+        <a href="index.html">início</a>
+    </nav>
+    <!-- Banner Principal -->
+    <section class="services-hero">
+        <h1>Nossos Serviços!</h1>
+        <p>Atuamos na linha de frente para mapear, proteger e restaurar os ecossistemas costeiros e marinhos de uma forma segura e sustentável</p>
+    </section>
+
+    <!-- Cards de Serviços -->
+    <main class="services-grid">
+        
+        <!-- Serviço 1 -->
+        <div class="service-card">
+            <div>
+                <div class="service-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h3>Monitoramento de Denúncias</h3>
+                <p>Análise e triagem de crimes ambientais reportados na costa, repassando relatórios técnicos diretamente para órgãos ambientais competentes.</p>
+            </div>
+            <a href="index.html#denunciar" class="service-btn">Acessar Canal</a>
+        </div>
+
+        <!-- Serviço 2 -->
+        <div class="service-card purple-top">
+            <div>
+                <div class="service-icon" style="color: var(--cyan-blue);">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                </div>
+                <h3>Educação e Palestras</h3>
+                <p>Treinamentos para escolas e empresas sobre preservação marinha, descarte correto de resíduos e redução do impacto plástico.</p>
+            </div>
+            <a href="sobrenos.html" class="service-btn">Agendar Palestra</a>
+        </div>
+
+        <!-- Serviço 3 -->
+        <div class="service-card">
+            <div>
+                <div class="service-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <h3>Consultoria e Certificação</h3>
+                <p>Auxiliamos projetos costeiros a se adequarem às normas internacionais de proteção ecológica para obtenção de selos de sustentabilidade.</p>
+            </div>
+            <a href="#" class="service-btn">Saber Mais</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="sobrenos.html">Sobre a ONG</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Transparência</a>
+        </div>
+        <p>&copy; 2026 Projeto São douglas - Juntos pela preservação marinha.</p>
+    </footer>
+
+</body>
+</html>

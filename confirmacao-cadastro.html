@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #009dff 0%, #00d4ff 100%);
+        }
+
+        .confirmation-box {
+            background: #000F72;
+            padding: 50px 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: #2ecc71;           /* Verde bonito */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 35px;
+        }
+
+        .btn-ok {
+            width: 100%;
+            padding: 16px;
+            background: #00d4ff;
+            color: #000F72;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-ok:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-box">
+        <!-- SVG de Confirmação: Círculo Verde com Check Branco -->
+        <div class="success-icon">
+            <svg width="55" height="55" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path 
+                    d="M20 6L9 17L4 12" 
+                    stroke="white" 
+                    stroke-width="3" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"/>
+            </svg>
+        </div>
+        
+        <h1>Cadastro efetuado com sucesso</h1>
+
+        <button class="btn-ok" onclick="voltarParaHome()">
+            OK
+        </button>
+    </div>
+
+    <script>
+        // Redireciona automaticamente após 6 segundos
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 6000);
+
+        function voltarParaHome() {
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>
