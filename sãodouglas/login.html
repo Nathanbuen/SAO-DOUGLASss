@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Com Logo de Imagem</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #009dff 0%, #00d4ff 100%);
+        }
+
+        .login-box {
+            background: #000F72;
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* ESTILO DO LOGO COM IMAGEM */
+        header { margin-bottom: 30px; text-align: left; }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centraliza a linha do logo */
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .brand-logo {
+            height: 60px; /* Altura controlada para não quebrar o layout */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+
+        /* FORMULÁRIO */
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .forgot-link { 
+            font-size: 0.85rem; color: white; text-decoration: none; 
+            display: block; margin: -10px 0 20px 0; opacity: 0.9; 
+        }
+
+        .btn-signin {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #001a33;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, opacity 0.3s;
+        }
+
+        /* Estilo para quando o botão estiver bloqueado */
+        .btn-signin:disabled {
+            background: #555;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .divider { text-align: center; margin: 25px 0; font-size: 0.8rem; opacity: 0.9; }
+
+        .social-login { display: flex; gap: 15px; margin-bottom: 25px; }
+        .social-btn {
+            flex: 1; padding: 15px; border: none; border-radius: 10px;
+            background: white; cursor: pointer; display: flex;
+            justify-content: center; align-items: center;
+        }
+        .social-btn img { width: 30px; }
+
+        .footer-text { text-align: center; font-size: 0.85rem; }
+        .footer-text a { color: white; font-weight: bold; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <header>
+            <div class="logo-wrapper">
+                <!-- SUBSTITUA O SRC ABAIXO PELO CAMINHO DA SUA IMAGEM -->
+                <img src="logo.png" alt="Logo" class="brand-logo">
+                <span class="logo-text"></span>
+            </div>
+            <h1>Login</h1>
+        </header>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="pessoa@gmail.com" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Senha" required>
+            </div>
+
+            <a href="#" class="forgot-link">Esqueceu a senha?</a>
+
+            <!-- Alterado para type="submit" para disparar a validação do script e inicia com disabled -->
+            <button type="submit" class="btn-signin" id="btnSubmit" disabled>Entrar</button>
+        </form>
+
+        <div class="divider">ou continue com:</div>
+
+        <div class="social-login">
+            <button class="social-btn"><img src="/img/google.png" alt="G"></button>
+            <button class="social-btn"><img src="/img/facebook (1).png" alt="F"></button>
+        </div>
+
+        <p class="footer-text">não tem uma conta? <a href="cadastro.html">cadastre-se</a></p>
+    </div>
+
+    <script>
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        // Função para validar se ambos os campos estão preenchidos
+        function verificarCampos() {
+            const emailPreenchido = emailInput.value.trim() !== '';
+            const passwordPreenchido = passwordInput.value.trim() !== '';
+
+            if (emailPreenchido && passwordPreenchido) {
+                btnSubmit.removeAttribute('disabled');
+            } else {
+                btnSubmit.setAttribute('disabled', 'true');
+            }
+        }
+
+        // Monitora a digitação nos inputs
+        emailInput.addEventListener('input', verificarCampos);
+        passwordInput.addEventListener('input', verificarCampos);
+
+        // Processamento do formulário no envio
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (password.length < 6) {
+                alert("A senha deve ter pelo menos 6 caracteres.");
+                return;
+            }
+
+            const data = { email, loginTime: new Date().toISOString() };
+            localStorage.setItem('user_session', JSON.stringify(data));
+            
+            alert("Sucesso! Dados armazenados no LocalStorage.");
+            console.log("Salvo:", JSON.parse(localStorage.getItem('user_session')));
+
+            // Redireciona o usuário após o sucesso da validação
+            window.location.href = 'confirmacao-login.html';
+        });
+    </script>
+
+</body>
+</html>
