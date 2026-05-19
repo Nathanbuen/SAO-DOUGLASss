@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protegendo a Vida nos Oceanos</title>
+
     <style>
         :root {
             --dark-blue: #000F72;
@@ -19,26 +20,35 @@
 
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color:  #ffffff;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
             color: #333;
         }
 
-        /* --- CABEÇALHO E NAVBAR --- */
+        /* HEADER */
+
         header {
             background-color: var(--dark-blue);
-            height: 40px;
+            height: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        .logo {
+            width: 50px;
+        }
+
+        /* NAV */
+
         nav {
             background-color: var(--cyan-blue);
             display: flex;
             justify-content: center;
-            padding: 12px 0;
-            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 12px 20px;
+            gap: 20px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -47,40 +57,41 @@
 
         nav a {
             text-decoration: none;
-            color: #000000;
+            color: #000;
             font-weight: bold;
             font-size: 14px;
             text-transform: lowercase;
             transition: color 0.3s;
         }
 
-        nav a:hover { color: white; }
+        nav a:hover {
+            color: white;
+        }
 
-        /* --- SEÇÃO PRINCIPAL (Sua Imagem) --- */
-              /* --- SEÇÃO PRINCIPAL (Sua Imagem) --- */
-              .hero-container {
-            width: 100%;            
-            height: auto; /* Remove a altura fixa de 460px */
+        /* HERO */
+
+        .hero-container {
+            width: 100%;
             display: flex;
             justify-content: center;
         }
 
         .original-image {
-            width: 100%;             
-            height: auto; /* Faz a altura encolher proporcionalmente à largura */
-            max-width: 100%; /* Garante que ela não passe do tamanho real */
+            width: 100%;
+            height: auto;
             display: block;
         }
 
+        /* FEATURES */
 
-
-        /* --- SEÇÃO DE ÍCONES (Denunciar, Apoiar, Conhecer) --- */
         .features {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             max-width: 1100px;
             margin: 0 auto;
             padding: 60px 20px;
+            gap: 30px;
         }
 
         .feature-item {
@@ -96,10 +107,20 @@
             border-radius: 50%;
         }
 
-        .feature-text b { color: var(--purple-main); font-size: 1.3rem; display: block; }
-        .feature-text p { margin: 0; font-size: 0.9rem; color: #666; }
+        .feature-text b {
+            color: var(--purple-main);
+            font-size: 1.3rem;
+            display: block;
+        }
 
-        /* --- GRÁFICO E CERTIFICADOS --- */
+        .feature-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* DATA SECTION */
+
         .data-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -111,13 +132,14 @@
         }
 
         .chart-container h3 {
-            text-align: right;
-            font-size: 40px;
-            color: rgb(0, 0, 0);
-            margin-bottom: 40px;
             text-align: center;
+            font-size: 40px;
+            color: #000;
+            margin-bottom: 40px;
         }
-        
+
+        /* BARS */
+
         .bars {
             display: flex;
             align-items: flex-end;
@@ -132,43 +154,60 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            color: rgb(255, 255, 255);
+            color: white;
             font-size: 0.8rem;
             font-weight: bold;
             padding-bottom: 10px;
             border-radius: 5px 5px 0 0;
-            transition: opacity 0.3s;
+            transition: 0.3s;
         }
 
-        .bar:hover { opacity: 0.8; cursor: pointer; }
+        .bar:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
 
-        /* Alturas e cores baseadas na sua imagem */
         .bar-1 { height: 75%; background: #1204cf; }
         .bar-2 { height: 45%; background: #0037ff; }
         .bar-3 { height: 30%; background: #7d06df; }
         .bar-4 { height: 60%; background: #8c00ff; }
         .bar-5 { height: 90%; background: #750bff; }
 
-        .certificates { text-align: center; }
-        .certificates h2 { color: rgb(0, 0, 0); font-size: 50px; height: 100px;
+        /* CERTIFICADOS */
+
+        .certificates {
+            text-align: center;
+        }
+
+        .certificates h2 {
+            color: #000;
+            font-size: 50px;
+            margin-bottom: 30px;
         }
 
         .cert-logos {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
         }
 
-        .cert-logos img { 
-            height: 200px; 
-            filter: grayscale(1); 
-            transition: 0.4s; 
+        .cert-logos img {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            filter: grayscale(1);
+            transition: 0.4s;
         }
 
-        .cert-logos img:hover { filter: grayscale(0); transform: translateY(10%); }
+        .cert-logos img:hover {
+            filter: grayscale(0);
+            transform: translateY(10%);
+        }
 
-        /* --- RODAPÉ --- */
+        /* FOOTER */
+
         footer {
             background: var(--dark-blue);
             color: white;
@@ -177,34 +216,107 @@
             margin-top: 80px;
         }
 
-        .footer-links { margin-bottom: 25px; }
-        .footer-links a { 
-            color: var(--cyan-blue); 
-            margin: 0 15px; 
-            text-decoration: none; 
+        .footer-links {
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            color: var(--cyan-blue);
+            margin: 0 15px;
+            text-decoration: none;
             font-size: 0.9rem;
         }
 
-        .footer-links a:hover { text-decoration: underline; }
-
-        .logo{
-            width: 50px;
+        .footer-links a:hover {
+            text-decoration: underline;
         }
 
-        /* --- RESPONSIVIDADE --- */
+        /* RESPONSIVIDADE */
+
         @media (max-width: 768px) {
-            .features, .data-section { grid-template-columns: 1fr; flex-direction: column; gap: 40px; }
-            .feature-item { justify-content: center; }
-            .bar { width: 40px; }
+
+            nav {
+                gap: 15px;
+                padding: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .data-section {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .chart-container h3 {
+                font-size: 28px;
+            }
+
+            .certificates h2 {
+                font-size: 36px;
+            }
+
+            .bars {
+                height: 220px;
+                gap: 8px;
+            }
+
+            .bar {
+                width: 35px;
+                font-size: 0.7rem;
+            }
+
+            .cert-logos {
+                flex-direction: column;
+            }
+
+            .cert-logos img {
+                max-width: 180px;
+            }
+
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .chart-container h3 {
+                font-size: 22px;
+            }
+
+            .certificates h2 {
+                font-size: 28px;
+            }
+
+            .bar {
+                width: 28px;
+                font-size: 0.65rem;
+            }
+
+            .cert-logos img {
+                max-width: 150px;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
         }
     </style>
-
 </head>
+
 <body>
 
     <header>
         <a href="index.html">
-            <img src="/img/logo.png" alt="Protegendo a vida nos Oceanos" class="logo">
+            <img src="logo.png" alt="Protegendo a vida nos Oceanos" class="logo">
         </a>
     </header>
 
@@ -212,23 +324,26 @@
         <a href="sobrenos.html">sobre nós</a>
         <a href="#denunciar">contato</a>
         <a href="servicos.html">serviços</a>
-        <!-- Novo link do usuário -->
+
         <a href="usuario.html" style="display: flex; align-items: center; gap: 5px; color: var(--purple-main);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
             usuário
         </a>
     </nav>
 
-    <!-- Parte 1: Sua Imagem Principal -->
     <section class="hero-container">
         <img src="baleia.png" alt="Protegendo a vida nos Oceanos" class="original-image">
     </section>
 
-    
-    <!-- Parte 3: Dados e Certificados -->
     <section class="data-section" id="certificados">
+
         <div class="chart-container">
             <h3>Gráfico de extinção (2010 - 2026)</h3>
+
             <div class="bars">
                 <div class="bar bar-1">25%</div>
                 <div class="bar bar-2">15%</div>
@@ -240,24 +355,31 @@
 
         <div class="certificates">
             <h2>Certificados</h2>
+
             <div class="cert-logos">
+
                 <img src="melhores.ongs.png" alt="Melhores ONGs">
 
                 <a href="certificado.html">
-                    <img src="certificado.doa.png" alt="Melhores ONGs">
+                    <img src="certificado.doa.png" alt="Certificado de Doação">
                 </a>
+
             </div>
         </div>
+
     </section>
 
     <footer>
+
         <div class="footer-links">
             <a href="#">Sobre a ONG</a>
             <a href="#">Privacidade</a>
             <a href="#">Transparência</a>
             <a href="#">Contato</a>
         </div>
+
         <p>&copy; 2026 Projeto São douglas - Juntos pela preservação marinha.</p>
+
     </footer>
 
 </body>
