@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - ONG</title>
+    <style>
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #009dff 0%, #00d4ff 100%);
+            padding: 20px;
+        }
+        .contact-box {
+            background: #000F72;
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 480px;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Logo */
+        header { 
+            margin-bottom: 30px; 
+            text-align: left; 
+        }
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .brand-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        h1 { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        /* Formulário */
+        .input-group { 
+            margin-bottom: 18px; 
+        }
+        .input-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-size: 0.95rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            outline: none;
+            font-size: 1rem;
+            color: #000F72;
+        }
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #001a33;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background: #003366;
+            transform: translateY(-2px);
+        }
+        .btn-submit:disabled {
+            background: #555;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .info-contact {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: 25px;
+        }
+        .footer-text a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-box">
+        <header>
+            <div class="logo-wrapper">
+                <!-- Substitua pelo caminho da sua logo -->
+                <img src="logo.png" alt="Logo ONG" class="brand-logo">
+            </div>
+            <h1>Entre em Contato</h1>
+            <p class="subtitle">Estamos aqui para ajudar. Fale conosco!</p>
+        </header>
+
+        <form id="contactForm">
+            <div class="input-group">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" placeholder="Seu nome" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="seuemail@gmail.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="assunto">Assunto</label>
+                <input type="text" id="assunto" placeholder="Como podemos ajudar?" required>
+            </div>
+
+            <div class="input-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="btnSubmit">Enviar Mensagem</button>
+        </form>
+
+        <div class="info-contact">
+            <p><strong>Ou entre em contato por:</strong></p>
+            <p>📧 contato@suong.org.br</p>
+            <p>📱 (41) 99999-9999</p>
+        </div>
+
+        <p class="footer-text">
+            <a href="index.html">← Voltar para a página inicial</a>
+        </p>
+    </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        // Habilita o botão apenas quando todos os campos estiverem preenchidos
+        function verificarCampos() {
+            const inputs = form.querySelectorAll('input, textarea');
+            let preenchido = true;
+
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    preenchido = false;
+                }
+            });
+
+            if (preenchido) {
+                btnSubmit.removeAttribute('disabled');
+            } else {
+                btnSubmit.setAttribute('disabled', 'true');
+            }
+        }
+
+        // Monitora os campos
+        form.addEventListener('input', verificarCampos);
+
+        // Envio do formulário
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const assunto = document.getElementById('assunto').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            // Simulação de envio
+            btnSubmit.textContent = 'Enviando...';
+            btnSubmit.disabled = true;
+
+            setTimeout(() => {
+                alert(`✅ Mensagem enviada com sucesso!\n\nObrigado, ${nome}!\nEm breve entraremos em contato.`);
+
+                // Salva no LocalStorage (opcional)
+                const contato = {
+                    nome,
+                    email,
+                    assunto,
+                    mensagem,
+                    data: new Date().toISOString()
+                };
+                localStorage.setItem('ultimo_contato', JSON.stringify(contato));
+
+                // Limpa o formulário
+                form.reset();
+                btnSubmit.textContent = 'Enviar Mensagem';
+                btnSubmit.disabled = true;
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
